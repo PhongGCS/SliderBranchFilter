@@ -1,0 +1,29 @@
+.tns-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    column-gap: 10px;
+}
+
+.tns-nav button {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: black;
+    border: unset;
+}
+
+button.tns-nav-active {
+    border-radius: 50%;
+    background-color: white;
+    border: solid 1px black !important;
+}
+
+.wsu-slider .tns-slide-active img.active {
+    border: solid 2px red;
+}
+
+.tns-liveregion {
+    display: none;
+}
