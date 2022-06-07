@@ -1,7 +1,6 @@
 <template>
   <div class="slider_branch">
     <h3>Hệ thống chi nhánh : {{activeCity}} {{activeDistrict}}</h3>
-    {{listImage}}
     <div class="cs-filter-list-branch">
       <CityFilterInput @emitCurrentActiveCity="currentActiveCity" :listCity="listCity"/>
       <DistrictFilterInput @emitCurrentActiveDistrict="currentActiveDistrict" :listDistrict="listDistrict" :key="districtComponentKey" />
