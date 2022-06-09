@@ -1,6 +1,6 @@
 <template>
   <div class="slider-location-map">
-    <div class="big-image">
+    <div class="big-image" v-if='listImage[currentIndex]'>
         <img :src="listImage[currentIndex].src" alt="">
     </div>
     <div class="wsu-slider">
@@ -36,7 +36,7 @@ export default {
     this.slider = tns({
         container: '.wsu-slider',
         items: 6,
-        autoplay: false,
+        autoplay: true,
         loop: false,
         gutter: 20,
         slideBy: 1,
@@ -50,10 +50,10 @@ export default {
         controls: false,
         responsive: {
             640: {
-                items: 2
+                items: 6
             },
             768: {
-                items: 3
+                items: 6
             },
             900: {
                 items: 6
@@ -91,7 +91,14 @@ export default {
         }
     },
     sliderRebuild: function() {
-        this.slider.rebuild();
+        if (this.slider) {
+            console.log("slider rebuild");
+            setTimeout(() => {
+                this.slider.rebuild();
+            }, 0);
+            this.currentIndex  = 0;
+            
+        }
     }
   }
 }
@@ -101,7 +108,8 @@ export default {
 
 .slider-location-map .big-image img {
     width: 100%;
-    height: 500px;
+    height: 400px;
+    object-fit: cover;
 }
 .wsu-slider img {
     display: inline-block;
@@ -112,6 +120,9 @@ export default {
 .wsu-slider {
     display: flex;
     position: relative;    
+}
+.wsu-slider > div {
+    width: calc(100% / 6);
 }
 
 </style>

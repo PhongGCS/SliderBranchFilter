@@ -1,5 +1,5 @@
 <template>
-  <div class="city-filter-input">
+  <div class="city-filter-input cs_custom_select">
         <label for="">Tỉnh/Thành phố</label>
         <select @change="onChange">
             <option v-for="(item,index) in listCity" :key="index" :value="item"> {{item}} </option>

@@ -1,5 +1,5 @@
 <template>
-  <div class="district-filter-input">
+  <div class="district-filter-input cs_custom_select">
         <label for="">Quận / Huyện</label>
         <select @change="onChange">
             <option value="" checked></option>
@@ -17,7 +17,6 @@ export default {
   methods: {
     onChange : function(event) {
       let activeDistrict = event.target.value;
-      console.log("alo" + activeDistrict);
       this.$emit("emitCurrentActiveDistrict",activeDistrict);
     }
   } 

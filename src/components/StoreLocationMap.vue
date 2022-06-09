@@ -1,5 +1,5 @@
 <template>
-  <div class="store-location-map">
+  <div class="store-location-map" v-if="activeBranch">
     <h3>{{activeBranch.name}}</h3>
     <div class="cs_phone_and_location">
         <ul>

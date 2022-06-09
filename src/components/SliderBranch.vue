@@ -174,7 +174,7 @@ export default {
     StoreLocationMap,
     LocationSlider
   },
-  mounted() {
+  beforeMount() {
     this.listCity = this.listBranchData.map(e => {
       return e.city
     });
@@ -183,24 +183,30 @@ export default {
     this.mapListDisctrict()
     console.log(this.listImage)
     this.activeBranch = this.listImage[0];
+    console.log(this.activeBranch);
   },
   methods: {
     currentActiveDistrict: function (activeDistrict) {
+      console.log("currentActiveDistrict")
       if(activeDistrict) {
         this.activeDistrict = activeDistrict;
         this.mapImageByCityAndDistrict();
       } else {
-        return;
+        this.currentActiveCity(this.activeCity);
       }
     },
     currentLocationActive: function (activeBranch) {
+      console.log("currentLocationActive")
       this.activeBranch = activeBranch;
     },
     currentActiveCity: function (activeCity) {
+      console.log("currentActiveCity")
       this.activeCity = activeCity;
+
       this.mapListDisctrict();
     },
     mapListDisctrict: function () {
+      console.log("mapListDisctrict")
       // Filter to get list disctrit
       let disctrit = this.listBranchData.filter(e => {
           return e.city === this.activeCity;
@@ -221,28 +227,31 @@ export default {
         let obj = disctrits[key];
         lastDisctritsImage = lastDisctritsImage.concat(obj)
       }
+      console.log("mapImageByCity")
       this.listImage = lastDisctritsImage
       //  rebuild slider
-      if(!this.isFirstInitSlider) {
-        this.$refs.childSliderComponent.sliderRebuild();
-      } else {
-        this.isFirstInitSlider = false;
-      }
-      
+      this.sliderRebuild();
     },
     mapImageByCityAndDistrict: function () {
+      console.log("Map new listImage")
       this.listImage = this.listBranchData.filter(e => {
           return e.city === this.activeCity;
       }).map(e => {
           return e.district[this.activeDistrict]
       })[0];
       
-      this.$refs.childSliderComponent.sliderRebuild();
-      
-      
+      console.log("Rebuild Slider")
+      this.sliderRebuild();
     },
     forceRerender: function () {
       this.districtComponentKey += 1;  
+    },
+    sliderRebuild: function () {
+      if(!this.isFirstInitSlider) {
+        this.$refs.childSliderComponent.sliderRebuild();
+      } else {
+        this.isFirstInitSlider = false;
+      }
     }
   }
 }
